@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"   
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<constant name="struts.ui.theme" value="simple"></constant>
+	<constant name="struts.configuration.xml.reload" value="true" />
+	<constant name="struts.serve.static.browserCache" value="false" />
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.action.excludePattern" value="/api/rest/.*"/>
+	
+	<package name="webspider" extends="struts-default, json-default">
+		<interceptors>
+			<interceptor name="session" class="sessionInterceptor" />
+			<interceptor-stack name="securityStack">
+				<interceptor-ref name="defaultStack">
+					<param name="exception.logEnabled">true</param>
+					<param name="exception.logLevel">error</param>
+				</interceptor-ref>
+				<interceptor-ref name="session" />
+			</interceptor-stack>
+		</interceptors>
+		
+		<default-interceptor-ref name="securityStack" />
+		
+		<global-results>
+			<result name="error">/error.jsp</result>
+			<result name="input">/error.jsp</result>
+			<result name="dologin" type="redirectAction">dologin</result>
+		</global-results>
+		
+		<global-exception-mappings>
+			<exception-mapping result="error" exception="java.lang.Exception"/>
+		</global-exception-mappings>
+	
+	</package>
+	
+	<package name="webspider_nologin" extends="struts-default, json-default">
+		<interceptors>
+			<interceptor-stack name="securityStack">
+				<interceptor-ref name="defaultStack">
+					<param name="exception.logEnabled">true</param>
+					<param name="exception.logLevel">error</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		<default-interceptor-ref name="securityStack" />
+		
+		<global-results>
+			<result name="error">/error.jsp</result>
+			<result name="input">/error.jsp</result>
+		</global-results>
+		
+		<global-exception-mappings>
+			<exception-mapping result="error" exception="java.lang.Exception"/>
+		</global-exception-mappings>
+	
+	</package>
+	
+	
+</struts>

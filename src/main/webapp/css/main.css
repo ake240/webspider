@@ -1,0 +1,169 @@
+@CHARSET "UTF-8";
+
+body {
+    font: 14px/20px "Microsoft YaHei", "微软雅黑", "Simsun", "宋体";
+}
+
+a {
+}
+
+a:HOVER {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.login-header {
+    height: 50px;
+    background: #222;
+}
+
+.login-input {
+    width: 250px;
+    margin: 10px auto;
+}
+
+.login-container {
+    border: 1px solid #ccc;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    box-shadow: 0 0 5px 1px #ddd;
+    border-radius: 5px;
+}
+
+.login-foot {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.input-error {
+    border: 1px solid red;
+}
+
+.mulselect-error {
+    padding: 0;
+    border: 1px solid red;
+}
+
+.select2-container .select2-choice.input-error {
+    border: 1px solid red;
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    background-color: #222;
+    color: #fff;
+}
+
+.spider-container {
+    padding-top: 100px;
+    padding-bottom: 50px;
+    background-color: #fff;
+}
+
+.header-container {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.logo {
+    margin-top: 5px;
+    width: 180px;
+}
+
+.page-title {
+    margin-top: 0;
+    overflow: hidden;
+    border-color: #5cb85c;
+}
+
+.page-title span {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.page-title button {
+    float: right;
+}
+
+.form-select2 {
+    padding: 0;
+    border: none;
+}
+
+.select2-container .select2-choice {
+    height: 34px;
+    padding: 3px 12px;
+}
+
+.icon-size {
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+.red {
+    color: red;
+}
+
+.page-nav {
+    text-align: center;
+}
+
+.page-active {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+
+.page-nav-info {
+    display: inline-block;
+    padding: 6px 12px;
+}
+
+#gotoPage {
+    height: 30px;
+    width: 60px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.inline {
+    display: inline;
+}
+
+.checkbox-size {
+    width: 15px;
+    height: 15px;
+}
+
+input[type="radio"] {
+    margin: 10px 0 0 0;
+}
+
+.panel-group {
+    margin-bottom: 20px;
+}
+
+#back-to-top {
+    position: fixed;
+    display: none;
+    bottom: 100px;
+    right: 8%;
+    z-index: 9999;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 2px;
+}
+
+#back-to-top a {
+    text-decoration: none;
+    display: block;
+}
+
+.form-control.Wdate {
+    background: #fff url(../My97DatePicker/skin/datePicker.gif) no-repeat right;
+}

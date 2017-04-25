@@ -1,0 +1,40 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<div class="modal fade" id="webSiteUserModal" style="margin-top: 50px;" role="dialog" data-backdrop="static" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h4 class="modal-title" id="webSiteUserLabel"></h4>
+			</div>
+			<form id="editWebSiteUserForm" method="post">
+				<div class="modal-body">
+					<div class="row clearfix">
+						<div class="col-md-12 column">
+							<div class="form-group">
+								 <label for="account">用户名称<span class="red">&nbsp;*</span></label>
+								 <input type="text" class="form-control mandatoryInp" id="accountEdit" name="account" />
+							</div>
+						</div>
+						<div class="col-md-12 column">
+							<div class="form-group">
+								 <label for="password">用户密码<span class="red">&nbsp;*</span></label>
+								 <input type="text" class="form-control mandatoryInp" id="passwordEdit" name="password" />
+							</div>
+						</div>
+						<div class="col-md-12 column">
+							<div class="form-group">
+								 <label for="newWebSiteSelector">所属网站<span class="red">&nbsp;*</span></label>
+								 <select class="form-control form-select2 mandatorySel" id="newWebSiteSelector" name="webSiteId"></select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<input type="hidden" id="webSiteUserId" name="webSiteUserId">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="submit" class="btn btn-success">确定</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

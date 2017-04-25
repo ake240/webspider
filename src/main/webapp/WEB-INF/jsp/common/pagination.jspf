@@ -1,0 +1,92 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<div class="page-nav" style="overflow: hidden;">
+    <s:if test="pageDTO!=null">
+        <s:if test="!pageDTO.isFirstPage">
+            <button type="button" class="navPage btn btn-default" id="<s:property value="%{pageDTO.pageNow-1}"/>">上一页
+            </button>
+        </s:if>
+        <s:else>
+            <button type="button" class="navPage btn btn-default" disabled>上一页</button>
+        </s:else>
+        <s:if test="pageDTO.pageCount <= 10">
+            <s:bean name="org.apache.struts2.util.Counter" id="counter">
+                <s:param name="first" value="1"/>
+                <s:param name="last" value="%{pageDTO.pageCount}"/>
+                <s:iterator>
+                    <s:if test="(current-1) == pageDTO.pageNow">
+                        <button type="button" class="navPage btn btn-default page-active" id="<s:property/>">
+                            <s:property/></button>
+                    </s:if>
+                    <s:else>
+                        <button type="button" class="navPage btn btn-default" id="<s:property/>"><s:property/></button>
+                    </s:else>
+                </s:iterator>
+            </s:bean>
+        </s:if>
+        <s:else>
+            <s:if test="pageDTO.pageNow <= 6">
+                <s:bean name="org.apache.struts2.util.Counter" id="counter">
+                    <s:param name="first" value="1"/>
+                    <s:param name="last" value="10"/>
+                    <s:iterator>
+                        <s:if test="(current-1) == pageDTO.pageNow">
+                            <button type="button" class="navPage btn btn-default page-active" id="<s:property/>">
+                                <s:property/></button>
+                        </s:if>
+                        <s:else>
+                            <button type="button" class="navPage btn btn-default" id="<s:property/>">
+                                <s:property/></button>
+                        </s:else>
+                    </s:iterator>
+                </s:bean>
+            </s:if>
+            <s:else>
+                <s:if test="pageDTO.pageCount - pageDTO.pageNow <= 4">
+                    <s:bean name="org.apache.struts2.util.Counter" id="counter">
+                        <s:param name="first" value="%{pageDTO.pageCount -9}"/>
+                        <s:param name="last" value="%{pageDTO.pageCount}"/>
+                        <s:iterator>
+                            <s:if test="(current-1) == pageDTO.pageNow">
+                                <button type="button" class="navPage btn btn-default page-active" id="<s:property/>">
+                                    <s:property/></button>
+                            </s:if>
+                            <s:else>
+                                <button type="button" class="navPage btn btn-default" id="<s:property/>">
+                                    <s:property/></button>
+                            </s:else>
+                        </s:iterator>
+                    </s:bean>
+                </s:if>
+                <s:else>
+                    <s:bean name="org.apache.struts2.util.Counter" id="counter">
+                        <s:param name="first" value="%{pageDTO.pageNow -5}"/>
+                        <s:param name="last" value="%{pageDTO.pageNow +4}"/>
+                        <s:iterator>
+                            <s:if test="(current-1) == pageDTO.pageNow">
+                                <button type="button" class="navPage btn btn-default page-active" id="<s:property/>">
+                                    <s:property/></button>
+                            </s:if>
+                            <s:else>
+                                <button type="button" class="navPage btn btn-default" id="<s:property/>">
+                                    <s:property/></button>
+                            </s:else>
+                        </s:iterator>
+                    </s:bean>
+                </s:else>
+            </s:else>
+        </s:else>
+        <s:if test="!pageDTO.isLastPage">
+            <button type="button" class="navPage btn btn-default" id="<s:property value="%{pageDTO.pageNow+1}"/>">下一页
+            </button>
+        </s:if>
+        <s:else>
+            <button type="button" class="navPage btn btn-default" disabled>下一页</button>
+        </s:else>
+        <span class="page-nav-info">第<s:property value='pageDTO.pageNow'/>/<s:property
+                value='pageDTO.pageCount'/>页</span>
+        <span class="page-nav-info">共<s:property value='pageDTO.total'/>条</span>
+    </s:if>
+    <%--<span class="page-nav-info">跳转到</span>
+    <form id="gotoPageForm" style="display: inline;"><input type="text" pageCount="<s:property value='pageDTO.pageCount'/>" id="gotoPage"></form> --%>
+</div>

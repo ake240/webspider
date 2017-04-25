@@ -1,0 +1,215 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<div class="panel panel-default content-tag" id="detached-content">
+	<div class="panel-heading">
+		<div class="panel-title inline">
+			设置
+		</div>
+		<div class="inline" style="float: right;">
+			<a class="glyphicon glyphicon-minus-sign icon-size removeContentBtn"></a>
+		</div>
+	</div>
+	<div class="panel-body">
+		<div class="row clearfix">
+			<div class="col-md-6 column">
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label">节点名称<span class="red">&nbsp;*</span></label>
+					<div class="col-sm-9">
+					 	<!-- <input type="text" class="form-control new-content-cnname mandatoryInp" placeholder="请输入节点中文名称"/> -->
+					 	<select class="form-control new-content-cnname mandatoryDefSel"></select>
+					 	<input type="hidden" class="new-content-enname"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label">抽取方式<span class="red">&nbsp;*</span></label>
+					<div class="col-sm-9">
+						<s:radio list="#{'1':'xpath','2':'正则', '3':'文本值', '4':'替换'}" cssClass="new-content-crawltype" id="" value="1"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label">必须有值<span class="red">&nbsp;*</span></label>
+					<div class="col-sm-9">
+						<s:radio list="#{'true':'是','false':'否'}" id="" cssClass="new-content-selectable" value="true"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label">字段类型<span class="red">&nbsp;*</span></label>
+					<div class="col-sm-9">
+						<s:radio list="#{'1':'字符串','2':'整数','3':'时间','4':'URL'}" id="" cssClass="new-content-nodeproperty" value="1"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label">清除空白字符<span class="red">&nbsp;*</span></label>
+					<div class="col-sm-9">
+						<s:radio list="#{'true':'是','false':'否'}" id="" cssClass="new-content-trimblank" value="true"/>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 column">
+				<!-- <div class="form-group">
+					 <label for="" class="col-sm-3 control-label">节点英文名称<span class="red">&nbsp;*</span></label>
+					 <div class="col-sm-9">
+					 	<input type="text" class="form-control new-content-enname mandatoryInp" placeholder="请输入节点英文名称"/>
+					 	<select class="form-control new-content-enname mandatorySel"></select>
+					 </div>
+				</div> -->
+				<div class="form-group">
+					 <label for="" class="col-sm-3 control-label">抓取表达式<span class="red">&nbsp;*</span></label>
+					 <div class="col-sm-9">
+					 	<!-- <input type="text" class="form-control new-content-expr mandatoryInp" placeholder="请输入抓取表达式"/> -->
+					 	<textarea class="form-control new-content-expr mandatoryInp" id=""></textarea>
+					 </div>
+				</div>
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label">获取网页源码<span class="red">&nbsp;*</span></label>
+					<div class="col-sm-9">
+						<s:radio list="#{'true':'是','false':'否'}" id="" cssClass="new-content-sourcehtml" value="false"/>
+					</div>
+				</div>
+				<div class="form-group multigroup">
+					<div>
+						<label for="" class="col-sm-3 control-label">字符串长度</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control new-content-minlength inline" name="" placeholder="min" style="width: 170px; float: left;">
+							<input type="text" class="form-control new-content-maxlength inline" name="" placeholder="max" style="width: 170px; float: right;">
+						</div>
+					</div>
+				</div>
+			</div>
+			<input type="hidden" class="new-content-nodetype" name="" value="1"/>
+		</div>
+		
+		<div class="panel-group replace-rule-panel" style="overflow:hidden;display:none">
+			<div class="panel panel-default">
+				<div class="panel-heading" style="overflow: hidden;">
+					<a class="panel-title" data-toggle="collapse" data-parent="" href="">替换规则设置</a>
+					<div style="float: right;">
+						<a class="glyphicon glyphicon-plus-sign icon-size add-replace-rule-button"></a>
+					</div>
+				</div>
+				<div class="panel-collapse collapse in">
+					<div class="panel-body">
+						<div class="row clearfix">
+							<div class="col-md-6 replace-rule-holder column" style="overflow:hidden;">
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+
+
+
+<div class="panel panel-default content-tag" id="new-content">
+	<div class="panel-heading">
+		<div class="panel-title inline">
+			设置
+		</div>
+		<div class="inline" style="float: right;">
+			<a class="glyphicon glyphicon-minus-sign icon-size removeContentBtn"></a>
+		</div>
+	</div>
+	<div class="panel-body">
+		<div class="row clearfix">
+			<div class="col-md-6 column">
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label">节点名称<span class="red">&nbsp;*</span></label>
+					<div class="col-sm-9">
+					 	<!-- <input type="text" class="form-control new-content-cnname mandatoryInp" placeholder="请输入节点中文名称"/> -->
+					 	<select class="form-control new-content-cnname mandatoryDefSel"></select>
+					 	<input type="hidden" class="new-content-enname"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label">抽取方式<span class="red">&nbsp;*</span></label>
+					<div class="col-sm-9">
+						<s:radio list="#{'1':'xpath','2':'正则', '3':'文本值', '4':'替换'}" cssClass="new-content-crawltype" id="" value="1"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label">必须有值<span class="red">&nbsp;*</span></label>
+					<div class="col-sm-9">
+						<s:radio list="#{'true':'是','false':'否'}" id="" cssClass="new-content-selectable" value="true"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label">字段类型<span class="red">&nbsp;*</span></label>
+					<div class="col-sm-9">
+						<s:radio list="#{'1':'字符串','2':'整数','3':'时间','4':'URL'}" id="" cssClass="new-content-nodeproperty" value="1"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label">清除空白字符<span class="red">&nbsp;*</span></label>
+					<div class="col-sm-9">
+						<s:radio list="#{'true':'是','false':'否'}" id="" cssClass="new-content-trimblank" value="true"/>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 column">
+				<!-- <div class="form-group">
+					 <label for="" class="col-sm-3 control-label">节点英文名称<span class="red">&nbsp;*</span></label>
+					 <div class="col-sm-9">
+					 	<input type="text" class="form-control new-content-enname mandatoryInp" placeholder="请输入节点英文名称"/>
+					 	<select class="form-control new-content-enname mandatorySel"></select>
+					 </div>
+				</div> -->
+				<div class="form-group">
+					 <label for="" class="col-sm-3 control-label">抓取表达式<span class="red">&nbsp;*</span></label>
+					 <div class="col-sm-9">
+					 	<!-- <input type="text" class="form-control new-content-expr mandatoryInp" placeholder="请输入抓取表达式"/> -->
+					 	<textarea class="form-control new-content-expr mandatoryInp" id=""></textarea>
+					 </div>
+				</div>
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label">获取网页源码<span class="red">&nbsp;*</span></label>
+					<div class="col-sm-9">
+						<s:radio list="#{'true':'是','false':'否'}" id="" cssClass="new-content-sourcehtml" value="false"/>
+					</div>
+				</div>
+				<div class="form-group multigroup">
+					<div>
+						<label for="" class="col-sm-3 control-label">字符串长度</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control new-content-minlength inline" name="" placeholder="min" style="width: 170px; float: left;">
+							<input type="text" class="form-control new-content-maxlength inline" name="" placeholder="max" style="width: 170px; float: right;">
+						</div>
+					</div>
+				</div>
+			</div>
+			<input type="hidden" class="new-content-nodetype" name="" value="1"/>
+		</div>
+		
+		<div class="panel-group replace-rule-panel" style="overflow:hidden;display:none">
+			<div class="panel panel-default">
+				<div class="panel-heading" style="overflow: hidden;">
+					<a class="panel-title" data-toggle="collapse" data-parent="" href="">替换规则设置</a>
+					<div style="float: right;">
+						<a class="glyphicon glyphicon-plus-sign icon-size add-replace-rule-button"></a>
+					</div>
+				</div>
+				<div class="panel-collapse collapse in">
+					<div class="panel-body">
+						<div class="row clearfix">
+							<div class="col-md-6 replace-rule-holder column" style="overflow:hidden;">
+<!-- 								<div class="form-group"> -->
+<!-- 									<label for="" class="col-sm-3 control-label">请选择<span class="red">&nbsp;*</span></label> -->
+<!-- 									<div class="col-sm-9"> -->
+<!-- 									 	<select class="form-control replace-rule-selector mandatoryDefSel"></select> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+

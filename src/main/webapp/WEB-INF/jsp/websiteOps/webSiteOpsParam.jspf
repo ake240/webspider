@@ -1,0 +1,87 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<div class="panel panel-default param-tag" id="detached-param">
+	<div class="panel-heading">
+		<div class="panel-title inline">
+			设置
+		</div>
+		<div class="inline" style="float: right;">
+			<a class="glyphicon glyphicon-minus-sign icon-size deleteParamInDBBtn" fieldid="<s:property value='fieldId'/>"></a>
+		</div>
+	</div>
+	<div class="panel-body">
+		<div class="row clearfix">
+			<div class="col-md-6 column">
+				<input type="hidden" class="new-fieldid" value="<s:property value='fieldId'/>">
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label">参数中文名称<span class="red">&nbsp;*</span></label>
+					<div class="col-sm-9">
+					 	<input type="text" class="form-control new-field-cnname mandatoryInp" value="<s:property value='fieldCnName'/>" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label">参数类型<span class="red">&nbsp;*</span></label>
+					<div class="col-sm-9">
+						<s:radio list="#{'1':'int','2':'long', '3':'string', '4':'date', '5':'file'}" cssClass="new-field-type" id="" value="fieldType"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label">参数标识<span class="red">&nbsp;*</span></label>
+					<div class="col-sm-9">
+						<s:radio list="#{'0':'占位符','1':'查询条件'}" id="" cssClass="new-field-flag" value="fieldFlag"/>
+					</div>
+				</div>
+				<div class="form-group">
+					 <label for="" class="col-sm-3 control-label">参数排序<span class="red">&nbsp;*</span></label>
+					 <div class="col-sm-9">
+					 	<input type="text" class="form-control new-sortno mandatoryInp" value="<s:property value='sortNo'/>"/>
+					 </div>
+				</div>
+				<div class="form-group">
+					 <label for="" class="col-sm-3 control-label">参数描述</span></label>
+					 <div class="col-sm-9">
+					 	<textarea rows="" cols="" class="form-control new-field-desc" placeholder="请输入参数描述"><s:property value='fieldDesc'/></textarea>
+					 </div>
+				</div>
+				<div class="form-group">
+					 <label for="" class="col-sm-3 control-label">是否保存<span class="red">&nbsp;*</span></label>
+					<div class="col-sm-9">
+						<s:radio list="#{'0':'否','1':'是'}" id="" cssClass="new-need-store" value="needStore"/>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 column">
+				<div class="form-group">
+					 <label for="" class="col-sm-3 control-label">参数英文名称<span class="red">&nbsp;*</span></label>
+					 <div class="col-sm-9">
+					 	<input type="text" class="form-control new-field-enname mandatoryInp" value="<s:property value='fieldEnName'/>"/>
+					 </div>
+				</div>
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label">默认值</span></label>
+					<div class="col-sm-9">
+						<textarea rows="" cols="" class="form-control new-field-value"><s:property value='fieldValue'/></textarea>
+					 	<%-- <input type="text" class="form-control new-field-value" value="<s:property value='fieldValue'/>"/> --%>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label">编码<span class="red">&nbsp;*</span></label>
+					<div class="col-sm-9">
+						<s:radio list="#{'0':'无','1':'utf-8','2':'gb2312','3':'gbk','4':'iso-8859-1'}" cssClass="new-needencode" id="" value="needEncode"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label">占位符参数<span class="red">&nbsp;*</span></label>
+					<div class="col-sm-9">
+						<s:radio list="#{'0':'否','1':'一般占位符', '2':'分页占位符'}" cssClass="new-placeholder-flag" id="" value="placeholderFlag"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label">占位符</span></label>
+					<div class="col-sm-9">
+					 	<input type="text" class="form-control new-placeholder" value="<s:property value='placeholder'/>"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

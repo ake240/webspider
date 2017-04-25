@@ -1,0 +1,117 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/select2.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/main.css" rel="stylesheet">
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/select2.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.form.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/main.js"></script>
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="banner">
+    <div class="container header-container">
+        <div class="navbar-header">
+            <a href="http://www.datayes.com/" target="_blank">
+                <img src="<%=request.getContextPath()%>/images/logo.png" class="logo">
+            </a>
+        </div>
+        <div id="back-to-top"><a href="#top">返<br>回<br>顶<br>部</a></div>
+        <div class="collapse navbar-collapse" role="navigation">
+        	<s:if test="#session.username=='jun.zhou'">
+        		<ul class="nav navbar-nav">
+        			<li><a href="enquiryKeywords">关键词列表</a></li>
+                    <li><a href="<%=request.getContextPath()%>/wordsTask">关键词爬取任务</a></li>
+                    <li><a href="enquiryIndexInfo">关键词数据</a></li>
+        		</ul>
+        	</s:if>
+        	<s:elseif test="#session.username=='dpipe'">
+        		<ul class="nav navbar-nav">
+        			<li><a href="extractor">新闻内容抽取</a></li>
+        		</ul>
+        	</s:elseif>
+        	<s:else>
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">服务器<strong class="caret"></strong></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="enquiryMachine">服务器</a></li>
+                        <li><a href="enquiryMachineRole">服务器角色</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">网站<strong class="caret"></strong></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="enquiryCategory">网站分类</a></li>
+                        <li><a href="enquiryWebSite">网站</a></li>
+                        <li><a href="enquiryWebSiteConfig">网站数据源配置</a></li>
+                        <li><a href="enquiryWebSiteUser">网站用户</a></li>
+                        <li><a href="enquiryProxyIP">网站代理IP</a></li>
+                        <li><a href="enquiryVerifyCode">网站验证码</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">网站操作类型<strong class="caret"></strong></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="enquiryWebSiteOps">操作类型</a></li>
+                        <!-- <li><a href="enquiryWebSiteOpsQueue">操作类型队列</a></li>  -->
+                        <li><a href="enquiryWebSiteOpsAntiRule">操作类型反监控</a></li>
+                        <li><a href="enquiryWebSiteOpsExceptionRule">操作类型异常监控</a></li>
+                        <li><a href="enquiryDataStoreType">存储类型</a></li>
+                        <li><a href="enquiryDataStoreField">存储字段</a></li>
+                    </ul>
+                </li>
+                <!-- 
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">关键词<strong class="caret"></strong></a>
+                    <ul class="dropdown-menu">
+                    	<li><a href="enquiryKeywords">关键词列表</a></li>
+                    	<li><a href="<%=request.getContextPath()%>/wordsTask">关键词爬取任务</a></li>
+                    	<li><a href="enquiryIndexInfo">关键词数据</a></li>
+                    </ul>
+                </li>
+                 -->
+                <li><a href="enquiryCrawlrule">网页抽取规则</a></li>
+                <li><a href="enquiryTask">任务管理</a></li>
+				<!-- <li><a href="extractor">新闻内容抽取</a></li> -->
+                <li class="dropdown">
+                	<a href="enquiryConnectionPool">监控</a>
+                </li>
+                <s:if test="#session.username=='admin'">
+                    <li><a href="enquiryUser">用户</a></li>
+                </s:if>
+            </ul>
+            </s:else>
+            
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><s:property
+                            value='#session.username'/><strong class="caret"></strong></a>
+                    <ul class="dropdown-menu">
+                        <s:if test="#session.username!='admin'">
+                            <li><a href="changePassword">修改密码</a></li>
+                            <li class="divider"></li>
+                        </s:if>
+                        <li><a href="logout">注销</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $(window).scroll(function () {
+            if ($(window).scrollTop() > 100) {
+                $("#back-to-top").fadeIn(500);
+            } else {
+                $("#back-to-top").fadeOut(500);
+            }
+        });
+
+        $("#back-to-top").click(function () {
+            $('body,html').animate({scrollTop: 0}, 100);
+            return false;
+        });
+    });
+</script>

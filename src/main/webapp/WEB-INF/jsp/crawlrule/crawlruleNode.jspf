@@ -1,0 +1,149 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<div class="panel panel-default content-tag">
+	<div class="panel-heading">
+		<div class="panel-title inline">
+			设置
+		</div>
+		<div class="inline" style="float: right;">
+			<a class="glyphicon glyphicon-minus-sign icon-size removeContentBtn"></a>
+		</div>
+	</div>
+	<div class="panel-body">
+		<div class="row clearfix">
+			<div class="col-md-6 column">
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label">节点名称<span class="red">&nbsp;*</span></label>
+					<div class="col-sm-9">
+					 	<%-- <input type="text" class="form-control new-content-cnname mandatoryInp" id="" name="<s:property value='#namePrefix'/>[<s:property value='#st.index'/>].crawlNodeCnName" value="<s:property value='crawlNodeCnName'/>" placeholder="请输入节点中文名称"/> --%>
+						<select class="form-control new-content-cnname mandatoryDefSel" name="<s:property value='#namePrefix'/>[<s:property value='#st.index'/>].crawlNodeCnName" myVal="<s:property value='crawlNodeCnName'/>"></select>
+						<input type="hidden" class="new-content-enname" id="" name="<s:property value='#namePrefix'/>[<s:property value='#st.index'/>].crawlNodeEnName" value="<s:property value='crawlNodeEnName'/>"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label">抽取方式<span class="red">&nbsp;*</span></label>
+					<div class="col-sm-9">
+						<s:radio list="#{'1':'xpath','2':'正则', '3':'文本值', '4':'替换'}" cssClass="new-content-crawltype" name="%{#namePrefix}[%{#st.index}].crawlExprType" value="crawlExprType"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label">必须有值<span class="red">&nbsp;*</span></label>
+					<div class="col-sm-9">
+						<s:radio list="#{'true':'是','false':'否'}" cssClass="new-content-selectable" name="%{#namePrefix}[%{#st.index}].selectable" value="selectable"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label">字段类型<span class="red">&nbsp;*</span></label>
+					<div class="col-sm-9">
+						<s:radio list="#{'1':'字符串','2':'整数','3':'时间','4':'URL'}" cssClass="new-content-nodeproperty" name="%{#namePrefix}[%{#st.index}].nodeProperty" value="nodeProperty"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label">清除空白字符<span class="red">&nbsp;*</span></label>
+					<div class="col-sm-9">
+						<s:radio list="#{'true':'是','false':'否'}" id="" cssClass="new-content-trimblank" name="%{#namePrefix}[%{#st.index}].trimBlank" value="trimBlank"/>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 column">
+				<%-- <div class="form-group">
+					 <label for="" class="col-sm-3 control-label">节点英文名称<span class="red">&nbsp;*</span></label>
+					 <div class="col-sm-9">
+					 	<input type="text" class="form-control new-content-enname mandatoryInp" id="" name="<s:property value='#namePrefix'/>[<s:property value='#st.index'/>].crawlNodeEnName" value="<s:property value='crawlNodeEnName'/>" placeholder="请输入节点英文名称"/>
+					 	<select class="form-control new-content-enname mandatorySel" name="<s:property value='#namePrefix'/>[<s:property value='#st.index'/>].crawlNodeEnName" myVal="<s:property value='crawlNodeEnName'/>"></select>
+					 </div>
+				</div> --%>
+				<div class="form-group">
+					 <label for="" class="col-sm-3 control-label">抓取表达式<span class="red">&nbsp;*</span></label>
+					 <div class="col-sm-9">
+					 	<%-- <input type="text" class="form-control new-content-expr mandatoryInp" id="" name="<s:property value='#namePrefix'/>[<s:property value='#st.index'/>].crawlExprVal" value="<s:property value='crawlExprVal'/>" placeholder="请输入抓取表达式"/> --%>
+					 	<textarea class="form-control new-content-expr mandatoryInp" id="" name="<s:property value='#namePrefix'/>[<s:property value='#st.index'/>].crawlExprVal"><s:property value='crawlExprVal'/></textarea>
+					 </div>
+				</div>
+				<div class="form-group">
+					<label for="" class="col-sm-3 control-label">获取网页源码<span class="red">&nbsp;*</span></label>
+					<div class="col-sm-9">
+						<s:radio list="#{'true':'是','false':'否'}" cssClass="new-content-sourcehtml" name="%{#namePrefix}[%{#st.index}].nodeHtmlSourceOptional" value="nodeHtmlSourceOptional"/>
+					</div>
+				</div>
+				<div class="form-group multigroup">
+					<s:if test="nodeProperty==1">
+						<div>
+							<label class="col-sm-3 control-label">字符串长度</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control new-content-minlength inline" name="<s:property value='#namePrefix'/>[<s:property value='#st.index'/>].minLength" value="<s:property value='minLength'/>" placeholder="min" style="width: 170px; float: left;">
+								<input type="text" class="form-control new-content-maxlength inline" name="<s:property value='#namePrefix'/>[<s:property value='#st.index'/>].maxLength" value="<s:property value='maxLength'/>" placeholder="max" style="width: 170px; float: right;">
+							</div>
+						</div>
+					</s:if>
+					<s:elseif test="nodeProperty==4">
+						<div>
+							<label class="col-sm-3 control-label">refer</label>
+							<div class="col-sm-9">
+								<s:radio list="#{'true':'是','false':'否'}" id="" cssClass="new-content-refer" name="%{#namePrefix}[%{#st.index}].refererFlag" value="refererFlag"/>
+							</div>
+						</div>
+					</s:elseif>
+				</div>
+				
+				<input type="hidden" class="new-content-nodetype" name="<s:property value='#namePrefix'/>[<s:property value='#st.index'/>].nodeType" value="<s:property value='nodeType'/>" />
+			</div>
+			
+			
+			<div>
+				
+			</div>
+		</div>
+		<!-- added by zhicheng -->
+		<s:if test="crawlExprType==4">
+			<div class="panel-group replace-rule-panel" style="overflow:hidden;">
+				<div class="panel panel-default">
+					<div class="panel-heading" style="overflow: hidden;">
+						<a class="panel-title" data-toggle="collapse" data-parent="" href="">替换规则设置</a>
+						<div style="float: right;">
+							<a class="glyphicon glyphicon-plus-sign icon-size add-replace-rule-button"></a>
+						</div>
+					</div>
+					<div class="panel-collapse collapse in">
+						<div class="panel-body">
+							<div class="row clearfix">
+								<div class="col-md-6 replace-rule-holder column" style="overflow:hidden;">
+										<s:iterator value="placeholderList" status="sst">
+											<div class="form-group">
+												<label for="" class="col-sm-3 control-label">请选择<span class="red">&nbsp;*</span></label>
+												<div class="col-sm-8">
+												 	<select class="form-control replace-rule-selector mandatoryDefSel" myVal="<s:property value='placeholderList[#sst.index]'/>"></select>
+												</div>
+												<div class="col-sm-1" style="float: right;">
+													<a class="glyphicon glyphicon-minus-sign icon-size removeReplaceRuleBtn"></a>
+												</div>
+											</div>										
+										</s:iterator>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</s:if>
+		<s:else>
+			<div class="panel-group replace-rule-panel" style="overflow:hidden;display:none;">
+				<div class="panel panel-default">
+					<div class="panel-heading" style="overflow: hidden;">
+						<a class="panel-title" data-toggle="collapse" data-parent="" href="">替换规则设置</a>
+						<div style="float: right;">
+							<a class="glyphicon glyphicon-plus-sign icon-size add-replace-rule-button"></a>
+						</div>
+					</div>
+					<div class="panel-collapse collapse in">
+						<div class="panel-body">
+							<div class="row clearfix">
+								<div class="col-md-6 replace-rule-holder column" style="overflow:hidden;">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</s:else>
+	</div>
+</div>
