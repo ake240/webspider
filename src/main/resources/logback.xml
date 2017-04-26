@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration scan="true" scanPeriod="120 seconds">
-	<property name="log.base" value="${log.dir}" />
+	<property name="log.base" value="d:/log/spider" />
 	<property name="info" value="/info/" />
 	<property name="debug" value="/debug/" />
 	<property name="error" value="/error/" />

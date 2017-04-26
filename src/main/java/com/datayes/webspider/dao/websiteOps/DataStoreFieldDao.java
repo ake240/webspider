@@ -25,20 +25,18 @@ public class DataStoreFieldDao extends BaseDao<DataStoreField> implements IDataS
 		criteria.addOrder(Order.desc("insertTime"));
 		return findPage(criteria, pageNow, pageSize);
 	}
-
+	
 	private DetachedCriteria buildCriteria(Integer typeId){
 		DetachedCriteria criteria = DetachedCriteria.forClass(DataStoreField.class);
 		if (typeId != null) {
 			criteria.add(Restrictions.eq("dataStoreType.dataStoreTypeId", typeId));
 		}
-		
 		return criteria;
 	}
 	
-	//根据fieldcnname获得相应的datastorefield
 	@Override
-	public DataStoreField getDataStoreFieldByFieldCnName(String fieldCnName) {
-		List<DataStoreField> list = (List<DataStoreField>)getHibernateTemplate().findByNamedQuery("getByFieldCnName", fieldCnName);
+	public DataStoreField getDataStoreFieldByFieldCnName(String fieldCnName,Integer dataStoreTypeId) {
+		List<DataStoreField> list = (List<DataStoreField>)getHibernateTemplate().findByNamedQuery("getByFieldCnName", fieldCnName, dataStoreTypeId);
 		if(!list.isEmpty()){
 			if(list.get(0) instanceof DataStoreField){
 				DataStoreField dataStoreField = list.get(0);				
@@ -47,26 +45,16 @@ public class DataStoreFieldDao extends BaseDao<DataStoreField> implements IDataS
 		}
 		return null;
 	}
-
-	//根据crawlnodeId查询datastorefield
+	
 	@Override
-	public DataStoreField getByDataStoreFieldId(Integer crawlNodeId) {
-		DataStoreField dataStoreField = (DataStoreField) getHibernateTemplate().findByNamedQuery("getByDataStoreFieldId", crawlNodeId).get(0);
-		return dataStoreField;
-	}
-
-	public List<DataStoreField> getByFieldCnName(String fieldCnName) {
-		List<DataStoreField> list = (List<DataStoreField>)getHibernateTemplate().findByNamedQuery("getByFieldCnName", fieldCnName);
-		if(!list.isEmpty()){			
-			return list;
+	public DataStoreField getDataStoreFieldByFieldEnName(String fieldEnName,Integer dataStoreTypeId) {
+		List<DataStoreField> list = (List<DataStoreField>)getHibernateTemplate().findByNamedQuery("getByFieldEnName", fieldEnName, dataStoreTypeId);
+		if(!list.isEmpty()){
+			if(list.get(0) instanceof DataStoreField){
+				DataStoreField dataStoreField = list.get(0);				
+				return dataStoreField;
+			}
 		}
 		return null;
 	}
-
-	@Override
-	public String getByExtName(String extName) {
-		List<DataStoreField> list = (List<DataStoreField>)getHibernateTemplate().findByNamedQuery("getByExtName", extName);
-		return null;
-	}
-
 }

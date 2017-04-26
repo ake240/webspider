@@ -1,5 +1,6 @@
 package com.datayes.webspider.action.ajax;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -183,9 +184,13 @@ public class JSONAction extends BaseAction{
 	public String findAllDataStoreField(){
 		List<DataStoreField> list = dataStoreFieldService.findByDataStoreTypeId(dataStoreTypeId);
 		for (DataStoreField dataStoreField : list) {
-			Integer crawlNodeId = dataStoreField.getDataStoreFieldId();
+			int fieldId = dataStoreField.getDataStoreFieldId();
 			String fieldCnName = dataStoreField.getFieldCnName();
-			jsonResult.put(crawlNodeId, fieldCnName);
+			String fieldEnName = dataStoreField.getFieldEnName();
+			Map<String,String> m = new HashMap<String,String>();
+			m.put("fieldCnName", fieldCnName);
+			m.put("fieldEnName", fieldEnName);
+			jsonResult.put(fieldId, m);
 		}
 		return SUCCESS;
 	}

@@ -14,9 +14,9 @@
 				<div class="form-group">
 					<label for="" class="col-sm-3 control-label">节点名称<span class="red">&nbsp;*</span></label>
 					<div class="col-sm-9">
-					 	<%-- <input type="text" class="form-control new-content-cnname mandatoryInp" id="" name="<s:property value='#namePrefix'/>[<s:property value='#st.index'/>].crawlNodeCnName" value="<s:property value='crawlNodeCnName'/>" placeholder="请输入节点中文名称"/> --%>
-						<select class="form-control new-content-cnname mandatoryDefSel" name="<s:property value='#namePrefix'/>[<s:property value='#st.index'/>].crawlNodeCnName" myVal="<s:property value='crawlNodeCnName'/>"></select>
-						<input type="hidden" class="new-content-enname" id="" name="<s:property value='#namePrefix'/>[<s:property value='#st.index'/>].crawlNodeEnName" value="<s:property value='crawlNodeEnName'/>"/>
+						<select class="form-control new-content-nodeid mandatoryDefSel" name="<s:property value='#namePrefix'/>[<s:property value='#st.index'/>].crawlNodeId" myVal="<s:property value='crawlNodeId'/>"></select>
+						<input type="hidden" class="new-content-enname" name="<s:property value='#namePrefix'/>[<s:property value='#st.index'/>].crawlNodeEnName" value="<s:property value='crawlNodeEnName'/>"/>
+						<input type="hidden" class="new-content-cnname" name="<s:property value='#namePrefix'/>[<s:property value='#st.index'/>].crawlNodeCnName" value="<s:property value='crawlNodeCnName'/>"/>
 					</div>
 				</div>
 				<div class="form-group">

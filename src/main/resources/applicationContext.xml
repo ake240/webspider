@@ -21,7 +21,7 @@
     <context:annotation-config />
      -->
 
-	<context:property-placeholder location="classpath:jdbc-${conf.env}.properties"/>
+	<context:property-placeholder location="classpath:jdbc-dev.properties"/>
 	
 	<context:component-scan base-package="com.datayes.webspider" />
 	

@@ -131,7 +131,6 @@
 												<div class="form-group">
 													 <label for="list-crawlNodeCnName" class="col-sm-3 control-label">节点中文名称<span class="red">&nbsp;*</span></label>
 													 <div class="col-sm-9">
-													 <!--	<input type="text" class="form-control mandatoryInp" id="list-crawlNodeCnName" name="crawlrule.crawlRuleNodeList[0].crawlNodeCnName" value="<s:property value='crawlrule.crawlRuleNodeList[0].crawlNodeId'/>" placeholder="请输入节点中文名称"/>  -->
 													 	<input type="text" class="form-control mandatoryInp" id="list-crawlNodeCnName" name="crawlrule.crawlRuleNodeList[0].crawlNodeCnName" value="<s:property value='crawlrule.crawlRuleNodeList[0].crawlNodeCnName'/>" placeholder="请输入节点中文名称"/>
 													 </div>
 												</div>
@@ -317,16 +316,17 @@
 		var referGroup = $("#referGroup");
 		var replaceRuleAdd = $("#replace-rule-add");
 		
-		var fieldNameMap = new Map();
+		//var fieldNameMap = new Map();
+		var fieldNameMap = {};
 	
 		function refreshName(type,radio){
 			
 			var i=0;
-			$(".new-content-cnname").each(function(){
+			$(".new-content-nodeid").each(function(){
 				if(radio=='1'){
-					$(this).attr("name","crawlrule.crawlRuleNodeList[" + i + "].crawlNodeCnName");
+					$(this).attr("name","crawlrule.crawlRuleNodeList[" + i + "].crawlNodeId");
 				}else{
-					$(this).attr("name","crawlrule.crawlRuleNodeList[0].childCrawlRuleNodeList[" + i + "].crawlNodeCnName");
+					$(this).attr("name","crawlrule.crawlRuleNodeList[0].childCrawlRuleNodeList[" + i + "].crawlNodeId");
 				}
 				i=i+1;
 			});
@@ -576,28 +576,27 @@
 			// var webSiteOpsId = $("#operationSelector").val();
 			var dataStoreTypeId = $("#dataStoreTypeIdSelector").val();
 			$.getJSON("findAllDataStoreField", {dataStoreTypeId:dataStoreTypeId}, function(data){
-				fieldNameMap.clear();
+				//fieldNameMap.clear();
+				fieldNameMap = data.jsonResult;
 				
 				$("#extCrawlNodeNameSelector").empty();
 				$.each(data.jsonResult, function(key, value){
 					//$("#extCrawlNodeNameSelector").prepend("<option value='" + value + "'>" + key + "</option>");
-					$("#extCrawlNodeNameSelector").prepend("<option value='" + value + "'>" + value + "</option>");
+					$("#extCrawlNodeNameSelector").prepend("<option value='" + value.fieldEnName + "'>" + value.fieldCnName + "</option>");
 				});
 				$("#extCrawlNodeNameSelector").prepend("<option></option>");
 								
 				var extCrawlNodeName = $("#extCrawlNodeNameSelector").attr("myVal");
 				$("#extCrawlNodeNameSelector").val(extCrawlNodeName);
 				
-				
-				
-				$("select.new-content-cnname").each(function(){
+				$("select.new-content-nodeid").each(function(){
 					var myVal = $(this).attr("myVal");
 					var sel = $(this);
 					sel.empty();
 					$.each(data.jsonResult, function(key, value){
 						//sel.prepend("<option value='" + key + "'>" + key + "</option>");
-						sel.prepend("<option value='" + value + "'>" + value + "</option>");
-						fieldNameMap.put(key,value);
+						//fieldNameMap.put(key,value);
+						sel.prepend("<option value='" + key + "'>" + value.fieldCnName + "</option>");
 					});
 					$(this).prepend("<option></option>");
 					$(this).val(myVal);
@@ -609,7 +608,7 @@
 					sel.empty();
 					$.each(data.jsonResult, function(key,value){
 						//sel.prepend("<option value='"+value+"'>" + key + "</option>" );
-						sel.prepend("<option value='"+ value +"'>" + value + "</option>" );
+						sel.prepend("<option value='" + value.fieldEnName + "'>" + value.fieldCnName + "</option>");
 					})
 					$(this).prepend("<option></option>");
 					$(this).val(myVal);
@@ -620,30 +619,29 @@
 		function refreshFieldName(){
 			var dataStoreTypeId = $("#dataStoreTypeIdSelector").val();
 			$.getJSON("findAllDataStoreField", {dataStoreTypeId:dataStoreTypeId}, function(data){
-				fieldNameMap.clear();
+				//fieldNameMap.clear();
+				fieldNameMap = data.jsonResult;
 				
 				var extCrawlNodeName = $("#extCrawlNodeNameSelector").val();
 				console.log("#extCrawlNodeNameSelector"+extCrawlNodeName)
 				$("#extCrawlNodeNameSelector").empty();
 				$.each(data.jsonResult, function(key, value){
 					//$("#extCrawlNodeNameSelector").prepend("<option value='" + value + "'>" + key + "</option>");
-					$("#extCrawlNodeNameSelector").prepend("<option value='" + value + "'>" + value + "</option>");
+					$("#extCrawlNodeNameSelector").prepend("<option value='" + value.fieldEnName + "'>" + value.fieldCnName + "</option>");
 				});
 				$("#extCrawlNodeNameSelector").prepend("<option></option>");
 								
 				$("#extCrawlNodeNameSelector").val(extCrawlNodeName);
 				
-				
-				
-				$("select.new-content-cnname").each(function(){
+				$("select.new-content-nodeid").each(function(){
 					//var myVal = $(this).attr("myVal");
 					var myVal = $(this).val();
 					var sel = $(this);
 					sel.empty();
 					$.each(data.jsonResult, function(key, value){
 						//sel.prepend("<option value='" + key + "'>" + key + "</option>");
-						sel.prepend("<option value='" + value + "'>" + value + "</option>");
-						fieldNameMap.put(key,value);
+						//fieldNameMap.put(key,value);
+						sel.prepend("<option value='" + key + "'>" + value.fieldCnName + "</option>");
 					});
 					$(this).prepend("<option></option>");
 					$(this).val(myVal);
@@ -655,7 +653,7 @@
 					sel.empty();
 					$.each(data.jsonResult, function(key,value){
 						//sel.prepend("<option value='"+value+"'>" + key + "</option>" );
-						sel.prepend("<option value='"+ value +"'>" + value + "</option>" );
+						sel.prepend("<option value='" + value.fieldEnName + "'>" + value.fieldCnName + "</option>");
 					})
 					$(this).prepend("<option></option>");
 					$(this).val(myVal);
@@ -666,7 +664,6 @@
 		$(function(){
 			
 			// $("#s2id_extOperationSelector .select2-search-choice-close").css("color","red");
-			
 			
 			$.getJSON("findAllDataStoreType", function(data){
 				var dataStoreTypeIdSelector = $("#dataStoreTypeIdSelector");
@@ -783,11 +780,14 @@
 				refreshFieldName();
 			});
 			
-			//有错才能Name不再是键
-			$("select.new-content-cnname").change(function(){
-				var cnName = $(this).val();
-				var enName = fieldNameMap.get(cnName);
-				$(this).next().val(enName);
+			$("select.new-content-nodeid").change(function(){
+				//var cnName = $(this).val();
+				//var enName = fieldNameMap.get(cnName);
+				//$(this).next().val(enName);
+				var nodeId = $(this).val();
+				var fieldMap = fieldNameMap[nodeId];
+				$(this).next().val(fieldMap.fieldEnName);
+				$(this).next().next().val(fieldMap.fieldCnName);
 			});
 			
 			/// added by zhicheng
@@ -827,17 +827,13 @@
 			});
 			
 			$(".saveCrawlrule").click(function(){
-
 				if(type==1){
 					$("#editCrawlruleForm").attr("action","editCrawlrule");
 				}else{
 					$("#editCrawlruleForm").attr("action","newCrawlrule");				
 				}
-
 				$("#editCrawlruleForm").attr("target","_self");
-
 				$("#editCrawlruleForm").submit();
-
 			});
 			
 			$(".validateCrawlrule").click(function(){
@@ -863,7 +859,7 @@
 // 					/* var listExtCrawlNodeName = $("#list-extCrawlNodeName").val(); */
 // 					var extCrawlNodeName = $("#extCrawlNodeNameSelector").val();
 // 					if( !extCrawlNodeName){ //extOperationId &&
-// 						$("#extCrawlNodeNameor").addClass("input-error");
+// 						$("#extCrawlNodeNameSelector").addClass("input-error");
 // 						ret = false;
 // 					}else{
 // 						$("#extCrawlNodeNameSelector").removeClass("input-error");
@@ -875,7 +871,7 @@
 				$("input.new-content-crawltype:checked").each(function(){
 					var crawlType = $(this).val();
 					if(crawlType == 4){
-						replaceAlertInfo = $(this).parent().parent().parent().find("select.new-content-cnname").eq(0).val();
+						replaceAlertInfo = $(this).parent().parent().parent().find("select.new-content-nodeid").eq(0).find("option:checked").text()
 						var newContentExprPanel= $(this).parent().parent().parent().next();
 						var exprVal = newContentExprPanel.find(".new-content-expr").eq(0).val();
 						var replaceRulePanel = $(this).parent().parent().parent().parent().next();
@@ -929,10 +925,14 @@
 				
 				removeReplaceRuleBtnRefresh();
 				
-				$("select.new-content-cnname").change(function(){
-					var cnName = $(this).val();
-					var enName = fieldNameMap.get(cnName);
-					$(this).next().val(enName);
+				$("select.new-content-nodeid").change(function(){
+					//var cnName = $(this).val();
+					//var enName = fieldNameMap.get(cnName);
+					//$(this).next().val(enName);
+					var nodeId = $(this).val();
+					var fieldMap = fieldNameMap[nodeId];
+					$(this).next().val(fieldMap.fieldEnName);
+					$(this).next().next().val(fieldMap.fieldCnName);
 				});
 				
 				$(".removeContentBtn").click(function(){
@@ -942,8 +942,6 @@
 						refreshName(type,radio);
 					}
 				});
-				
-				
 			});
 			
 			$("#addRemoveExprBtn").click(function(){

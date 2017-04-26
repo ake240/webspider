@@ -11,13 +11,7 @@ public interface IDataStoreFieldDao extends IBaseDao<DataStoreField> {
 	
 	List enquiryDataStoreFieldPage(Integer typeId, int pageNow, int pageSize);
 	
-	//根据fieldcnname获得相应的datastorefield
-	DataStoreField getDataStoreFieldByFieldCnName(String fieldCnName);
+	DataStoreField getDataStoreFieldByFieldCnName(String fieldCnName,Integer dataStoreTypeId);
 	
-	DataStoreField getByDataStoreFieldId(Integer crawlNodeId);
-
-	List<DataStoreField> getByFieldCnName(String fieldCnName);
-
-	String getByExtName(String extName);
-
+	DataStoreField getDataStoreFieldByFieldEnName(String fieldEnName,Integer dataStoreTypeId);
 }

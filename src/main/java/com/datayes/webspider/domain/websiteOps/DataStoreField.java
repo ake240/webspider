@@ -21,7 +21,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @NamedQueries({
 	@NamedQuery(name="getFieldsByTypeId",query="from DataStoreField d where d.dataStoreType.dataStoreTypeId = ?"),
 	@NamedQuery(name="getByDataStoreFieldId", query="from DataStoreField d where d.dataStoreFieldId = ?"),
-	@NamedQuery(name="getByFieldCnName",query="from DataStoreField d where d.fieldCnName = ?")
+	@NamedQuery(name="getByFieldCnName",query="from DataStoreField d where d.fieldCnName = ? and d.dataStoreType.dataStoreTypeId = ?"),
+	@NamedQuery(name="getByFieldEnName",query="from DataStoreField d where d.fieldEnName = ? and d.dataStoreType.dataStoreTypeId = ?")
 })
 public class DataStoreField {
 	@Id

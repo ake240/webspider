@@ -19,10 +19,7 @@ public interface IDataStoreFieldService {
 	
 	List<DataStoreField> findByDataStoreTypeId(Integer dataStoreTypeId);
 	
-	DataStoreField getDataStoreFieldByFieldCnName(String fieldCnName);
-
-	List<DataStoreField> getByFieldCnName(String fieldCnName);
-
-	String findByExtName(String extName);
+	DataStoreField getDataStoreFieldByFieldCnName(String fieldCnName, Integer dataStoreTypeId);
 	
+	DataStoreField getDataStoreFieldByFieldEnName(String fieldEnName, Integer dataStoreTypeId);
 }

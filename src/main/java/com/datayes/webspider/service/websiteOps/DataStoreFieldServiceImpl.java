@@ -52,17 +52,12 @@ public class DataStoreFieldServiceImpl implements IDataStoreFieldService {
 	}
 
 	@Override
-	public DataStoreField getDataStoreFieldByFieldCnName(String fieldCnName) {
-		return dataStoreFieldDao.getDataStoreFieldByFieldCnName(fieldCnName);
+	public DataStoreField getDataStoreFieldByFieldCnName(String fieldCnName,Integer dataStoreTypeId) {
+		return dataStoreFieldDao.getDataStoreFieldByFieldCnName(fieldCnName,dataStoreTypeId);
 	}
-
+	
 	@Override
-	public List<DataStoreField> getByFieldCnName(String fieldCnName) {
-		return dataStoreFieldDao.getByFieldCnName(fieldCnName);
-	}
-
-	@Override
-	public String findByExtName(String extName) {
-		return dataStoreFieldDao.getByExtName(extName);
+	public DataStoreField getDataStoreFieldByFieldEnName(String fieldEnName,Integer dataStoreTypeId) {
+		return dataStoreFieldDao.getDataStoreFieldByFieldEnName(fieldEnName,dataStoreTypeId);
 	}
 }
