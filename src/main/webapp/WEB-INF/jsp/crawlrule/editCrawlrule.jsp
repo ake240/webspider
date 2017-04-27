@@ -341,6 +341,16 @@
 				j=j+1;
 			});
 			
+			var j=0;
+			$(".new-content-cnname").each(function(){
+				if(radio=='1'){
+					$(this).attr("name","crawlrule.crawlRuleNodeList[" + j + "].crawlNodeCnName");
+				}else{
+					$(this).attr("name","crawlrule.crawlRuleNodeList[0].childCrawlRuleNodeList[" + j + "].crawlNodeCnName");
+				}
+				j=j+1;
+			});
+			
 			var m=0,n=0;
 			$("input.new-content-crawltype").each(function(){
 				if(n<4){
@@ -600,6 +610,11 @@
 					});
 					$(this).prepend("<option></option>");
 					$(this).val(myVal);
+					var fieldMap = fieldNameMap[myVal];
+					if(fieldMap){
+						$(this).next().val(fieldMap.fieldEnName);
+						$(this).next().next().val(fieldMap.fieldCnName);
+					}
 				});
 				
 				$("select.replace-rule-selector").each(function(){
@@ -645,6 +660,11 @@
 					});
 					$(this).prepend("<option></option>");
 					$(this).val(myVal);
+					var fieldMap = fieldNameMap[myVal];
+					if(fieldMap){
+						$(this).next().val(fieldMap.fieldEnName);
+						$(this).next().next().val(fieldMap.fieldCnName);
+					}
 				});
 				
 				$("select.replace-rule-selector").each(function(){

@@ -12,12 +12,12 @@
     <defaultCache
 	     maxElementsInMemory="10000"
 	     eternal="false"
-	     timeToIdleSeconds="1800" 
-	     timeToLiveSeconds="1800" 
+	     timeToIdleSeconds="3600" 
+	     timeToLiveSeconds="3600" 
 	     overflowToDisk="true"
 	     maxElementsOnDisk="10000000"
 	     diskPersistent="false"
-	     diskExpiryThreadIntervalSeconds="1800"
+	     diskExpiryThreadIntervalSeconds="3600"
 	     memoryStoreEvictionPolicy="LRU"
      />
     
@@ -28,7 +28,7 @@
 	<cache name="org.hibernate.cache.internal.StandardQueryCache"
 	       maxElementsInMemory="10000" 
 	       eternal="false" 
-	       timeToLiveSeconds="1800"
+	       timeToLiveSeconds="3600"
 	       overflowToDisk="true" />	
 	
 	<!--
@@ -39,7 +39,7 @@
 	添加配置到ehcache.xml中
 	-->    
     <cache name="javaClassName" maxElementsInMemory="2000" eternal="false" 
-	       timeToIdleSeconds="1800" timeToLiveSeconds="1800"
+	       timeToIdleSeconds="3600" timeToLiveSeconds="3600"
 	       overflowToDisk="true" /> 
 		
 </ehcache>
